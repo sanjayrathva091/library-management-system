@@ -15,11 +15,52 @@ router.get('/:id', async (req, res, next) => {
 
 // Issue a book to a user
 router.post('/issue/:bookId/:userId', async (req, res, next) => {
-    // Implement logic to issue a book to a user
-    // ...
+    const { bookId, userId } = req.params;
 
     try {
-        res.json(/* issued transaction data */);
+        // Step 1: Check if the book is available
+        const book = await Book.findById(bookId);
+        if (!book) {
+            return res.status(404).json({ message: 'Book not found' });
+        }
+
+        if (!book.availability) {
+            return res.status(400).json({ message: 'Book is not available for issuance' });
+        }
+
+        // Step 2: Update the book's availability status
+        book.availability = false;
+        await book.save();
+
+        // Step 3: Create a new transaction record
+        const user = await User.findById(userId);
+        if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+        }
+
+        // Set the due date as 30 days from now
+        const dueDate = new Date();
+        dueDate.setDate(dueDate.getDate() + 30);
+
+        const transaction = new Transaction({
+            user: userId,
+            book: bookId,
+            dueDate,
+            transactionType: 'borrowed',
+        });
+
+        await transaction.save();
+
+        // Step 4: Return the relevant information about the issued transaction
+        res.json({
+            message: 'Book issued successfully',
+            transaction: {
+                user: user.username,
+                book: book.name,
+                dueDate: dueDate.toISOString(),
+                transactionType: 'borrowed',
+            },
+        });
     } catch (error) {
         next(error);
     }
@@ -27,11 +68,42 @@ router.post('/issue/:bookId/:userId', async (req, res, next) => {
 
 // Return a book from a user
 router.post('/return/:bookId/:userId', async (req, res, next) => {
-    // Implement logic to return a book from a user
-    // ...
+    const { bookId, userId } = req.params;
 
     try {
-        res.json(/* returned transaction data */);
+        // Step 1: Check if the book is currently borrowed by the specified user
+        const transaction = await Transaction.findOne({
+            user: userId,
+            book: bookId,
+            transactionType: 'borrowed',
+        });
+
+        if (!transaction) {
+            return res.status(400).json({ message: 'Book is not currently borrowed by the specified user' });
+        }
+
+        // Step 2: Update the book's availability status to indicate it has been returned
+        const book = await Book.findById(bookId);
+        if (!book) {
+            return res.status(404).json({ message: 'Book not found' });
+        }
+
+        book.availability = true;
+        await book.save();
+
+        // Step 3: Update the corresponding transaction record to mark the book as returned
+        transaction.transactionType = 'returned';
+        await transaction.save();
+
+        // Step 4: Return the relevant information about the returned transaction
+        res.json({
+            message: 'Book returned successfully',
+            transaction: {
+                user: userId,
+                book: book.name,
+                transactionType: 'returned',
+            },
+        });
     } catch (error) {
         next(error);
     }

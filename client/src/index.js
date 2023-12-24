@@ -1,13 +1,27 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import {
+  ChakraBaseProvider,
+} from '@chakra-ui/react';
 import './index.css';
-import App from './App';
+
 import reportWebVitals from './reportWebVitals';
+import { Provider } from 'react-redux';
+import store from './store/store';
+import MainRoutes from './routes/MainRoutes';
+import { BrowserRouter } from 'react-router-dom';
+import theme from './components/theme/theme';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <ChakraBaseProvider theme={theme}>
+        <BrowserRouter>
+          <MainRoutes />
+        </BrowserRouter>
+      </ChakraBaseProvider>
+    </Provider>
   </React.StrictMode>
 );
 

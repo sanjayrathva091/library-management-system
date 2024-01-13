@@ -19,7 +19,7 @@ const ChartComponent = ({ chartId, title, data, chartType }) => {
                 am5themes_Material.new(root),
             ]);
 
-            let chart, series, xAxis, yAxis, label, legend;
+            let chart, series, xAxis, yAxis, legend;
 
             switch (chartType) {
                 case "donut":
@@ -46,7 +46,7 @@ const ChartComponent = ({ chartId, title, data, chartType }) => {
                         duration: 2000,
                         easing: am5.ease.yoyo(am5.ease.cubic),
                     });
-                    label = series.children.push(
+                    series.children.push(
                         am5.Label.new(root, {
                             html: "<h6>Total</h6><h4>{valueSum.formatNumber('#,###.')}</h4>",
                             fontSize: 14,

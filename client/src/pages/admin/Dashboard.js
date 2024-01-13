@@ -1,7 +1,9 @@
-import { Box, Flex, useColorModeValue } from '@chakra-ui/react';
+import { Box, Flex, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import ChartComponent from '../../components/charts/ChartComponent';
 import StatsCard from '../../components/StatsCard';
-import { userTransactionsData, bookCategoriesData } from '../../database/data';
+import { userTransactionsData, bookCategoriesData, reservationData } from '../../database/data';
+import ReservationTable from '../../components/ReservationTable';
+
 
 function Dashboard() {
     const scrollbarColor = useColorModeValue(
@@ -79,19 +81,25 @@ function Dashboard() {
                 />
             </Flex>
 
-
-            <ChartComponent
-                chartId={"transactionsBar"}
-                title="Book Categories"
-                data={bookCategoriesData}
-                chartType="donut"
-            />
-            <ChartComponent
-                chartId={"bookPie"}
-                title="Book Availability"
-                data={userTransactionsData}
-                chartType="bar"
-            />
+            <SimpleGrid templateColumns={{ base: "100vw", md: "1fr 20em", lg: "1fr 20em", xl: "1fr 20em" }} spacing={"md"}>
+                <Box>
+                    <ReservationTable defaultData={reservationData} />
+                </Box>
+                <Box>
+                    <ChartComponent
+                        chartId={"transactionsBar"}
+                        title="Book Categories"
+                        data={bookCategoriesData}
+                        chartType="donut"
+                    />
+                    <ChartComponent
+                        chartId={"bookPie"}
+                        title="Book Availability"
+                        data={userTransactionsData}
+                        chartType="bar"
+                    />
+                </Box>
+            </SimpleGrid>
 
 
         </Box>

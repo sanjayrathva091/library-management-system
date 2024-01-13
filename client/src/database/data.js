@@ -542,4 +542,175 @@ const dummyBooks = [
 
 ];
 
-export { bookCategoriesData, userTransactionsData, dummyBooks };
+const reservationData = [
+  {
+    book: {
+      title: "The Great Gatsby",
+      author: "F. Scott Fitzgerald",
+      category: "Fiction",
+    },
+    user: {
+      name: "John Doe",
+      email: "john.doe@example.com",
+      contactNumber: "1234567890",
+    },
+    reservationDate: "2023-03-01",
+    status: "Pending",
+  },
+  {
+    book: {
+      title: "To Kill a Mockingbird",
+      author: "Harper Lee",
+      category: "Classic",
+    },
+    user: {
+      name: "Alice Johnson",
+      email: "alice.johnson@example.com",
+      contactNumber: "9876543210",
+    },
+    reservationDate: "2023-03-05",
+    status: "Confirmed",
+  },
+  {
+    book: {
+      title: "1984",
+      author: "George Orwell",
+      category: "Dystopian",
+    },
+    user: {
+      name: "Bob Smith",
+      email: "bob.smith@example.com",
+      contactNumber: "555-1234",
+    },
+    reservationDate: "2023-03-10",
+    status: "Canceled",
+  },
+  {
+    book: {
+      title: "Pride and Prejudice",
+      author: "Jane Austen",
+      category: "Romance",
+    },
+    user: {
+      name: "Eva Brown",
+      email: "eva.brown@example.com",
+      contactNumber: "678-9876",
+    },
+    reservationDate: "2023-03-15",
+    status: "Pending",
+  },
+  {
+    book: {
+      title: "The Catcher in the Rye",
+      author: "J.D. Salinger",
+      category: "Coming of Age",
+    },
+    user: {
+      name: "Michael White",
+      email: "michael.white@example.com",
+      contactNumber: "123-4567",
+    },
+    reservationDate: "2023-03-20",
+    status: "Confirmed",
+  },
+  {
+    book: {
+      title: "Moby-Dick",
+      author: "Herman Melville",
+      category: "Adventure",
+    },
+    user: {
+      name: "Sophie Taylor",
+      email: "sophie.taylor@example.com",
+      contactNumber: "999-8888",
+    },
+    reservationDate: "2023-03-25",
+    status: "Pending",
+  },
+  {
+    book: {
+      title: "The Hobbit",
+      author: "J.R.R. Tolkien",
+      category: "Fantasy",
+    },
+    user: {
+      name: "Chris Davis",
+      email: "chris.davis@example.com",
+      contactNumber: "333-5555",
+    },
+    reservationDate: "2023-03-30",
+    status: "Canceled",
+  },
+  {
+    book: {
+      title: "Brave New World",
+      author: "Aldous Huxley",
+      category: "Science Fiction",
+    },
+    user: {
+      name: "Olivia Miller",
+      email: "olivia.miller@example.com",
+      contactNumber: "777-1111",
+    },
+    reservationDate: "2023-04-01",
+    status: "Confirmed",
+  },
+  {
+    book: {
+      title: "The Odyssey",
+      author: "Homer",
+      category: "Epic",
+    },
+    user: {
+      name: "Charlie Wilson",
+      email: "charlie.wilson@example.com",
+      contactNumber: "111-2222",
+    },
+    reservationDate: "2023-04-05",
+    status: "Pending",
+  },
+  {
+    book: {
+      title: "Jane Eyre",
+      author: "Charlotte Brontë",
+      category: "Gothic",
+    },
+    user: {
+      name: "Isabel Adams",
+      email: "isabel.adams@example.com",
+      contactNumber: "444-6666",
+    },
+    reservationDate: "2023-04-10",
+    status: "Confirmed",
+  },
+  {
+    book: {
+      title: "The Alchemist",
+      author: "Paulo Coelho",
+      category: "Philosophical Fiction",
+    },
+    user: {
+      name: "Lucas Moore",
+      email: "lucas.moore@example.com",
+      contactNumber: "666-9999",
+    },
+    reservationDate: "2023-04-15",
+    status: "Pending",
+  },
+  {
+    book: {
+      title: "The Lord of the Rings",
+      author: "J.R.R. Tolkien",
+      category: "High Fantasy",
+    },
+    user: {
+      name: "Emily Scott",
+      email: "emily.scott@example.com",
+      contactNumber: "888-4444",
+    },
+    reservationDate: "2023-04-20",
+    status: "Canceled",
+  },
+];
+
+export { bookCategoriesData, userTransactionsData, dummyBooks, reservationData };
